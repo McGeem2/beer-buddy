@@ -1,3 +1,4 @@
+
 package com.beerbuddy.core.service;
 
 import com.beerbuddy.core.model.User;

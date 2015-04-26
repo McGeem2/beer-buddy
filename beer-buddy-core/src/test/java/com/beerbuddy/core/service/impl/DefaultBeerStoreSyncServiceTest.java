@@ -32,7 +32,8 @@ import com.beerbuddy.core.service.BeerStoreSyncService;
 import com.google.common.collect.ImmutableMap;
 
 public class DefaultBeerStoreSyncServiceTest {
-
+	
+	
 	BeerStoreSyncService service;
 	
 	@Mock
@@ -107,11 +108,47 @@ public class DefaultBeerStoreSyncServiceTest {
 		
 		assertThat(success, is(equalTo(true)));
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void sync_unavailableImageUrls() {
+		List<Map<String, Object>> body = new ArrayList<>();
+		body.add(ImmutableMap.<String, Object> builder()
+				.put("name", "Beer One")
+				.put("beer_id", 1)
+				.put("image_url", "image")
+				.put("category", "Craft")
+				.put("abv", "5.5")
+				.put("type", "Lager")
+				.put("brewer", "Molson")
+				.put("country", "Canada")
+				.put("on_sale", false)
+				.build());
+		body.add(ImmutableMap.<String, Object> builder()
+				.put("name", "Beer Two")
+				.put("beer_id", 2)
+				.put("image_url", "image")
+				.put("category", "Craft")
+				.put("abv", "5.5")
+				.put("type", "Lager")
+				.put("brewer", "Molson")
+				.put("country", "Canada")
+				.put("on_sale", false)
+				.build());
+		when(responseEntity.getBody()).thenReturn(body);
+		when(responseEntity.getStatusCode()).thenReturn(HttpStatus.OK, HttpStatus.OK, HttpStatus.BAD_REQUEST);
+		
+		service.sync();
+		
+		verify(beerRepository, times(1)).save(any(Beer.class));
+		verify(beerRepository).save(argThat(new BeerNameMatcher(() -> "Beer One")));
+	}
+	
 	@FunctionalInterface
 	public interface BeerNameMatcherFunction {
 		public String getName();
 	}
+	
 	public class BeerNameMatcher extends BaseMatcher<Beer> {
 
 		BeerNameMatcherFunction nameFunction;
