@@ -16,9 +16,9 @@
 
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/angular-material.css'/>">
--<link rel="stylesheet" type="text/css" href="/static/bower_components/slick/slick.css">
--<link rel="stylesheet" type="text/css" href="/static/bower_components/angular-slick/app/styles/main.css">
--<link rel="stylesheet" type="text/css" href="/static/bower_components/slick/slick-theme.css">
+<link rel="stylesheet" type="text/css" href="/static/bower_components/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="/static/bower_components/angular-slick/app/styles/main.css">
+<link rel="stylesheet" type="text/css" href="/static/bower_components/slick/slick-theme.css">
  <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/themes/amber-theme.css'/>">
  <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/themes/blue-theme.css'/>">
  <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/themes/cyan-theme.css'/>">
@@ -52,10 +52,6 @@
 
 	</div>
 
-	<!--
-	<script src="<c:url value='/static/lib/angularjs/1.3.2/angular.min.js'/>"></script>
-	<script src="<c:url value='/static/lib/angularjs/1.3.2/angular-resource.js'/>"></script>
-	 -->
 	<script type="text/javascript">
 		var beerBuddyContext = {
 			contextPath : "<%= request.getContextPath() %>"

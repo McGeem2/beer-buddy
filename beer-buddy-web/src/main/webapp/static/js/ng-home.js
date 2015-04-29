@@ -1,8 +1,6 @@
 angular.module('beer-buddy-app')
 
-.controller(
-		'HomeController',
-		[
+.controller('HomeController',[
 				'$scope',
 				'$rootScope',
 				'BeerService',
@@ -29,7 +27,7 @@ angular.module('beer-buddy-app')
 							$scope.totalPages = page.totalPages;
 							$scope.lastPage = page.last;
 							$scope.beers = chunk($scope.beers, 2);
-
+							
 							function chunk(arr, size) {
 								var newArr = [];
 								for (var i = 0; i < arr.length; i
@@ -46,16 +44,10 @@ angular.module('beer-buddy-app')
 					
 
 					// load the first page...
-					}
-					if((i+1) % 3 === 0)
-					{
-						i++;
-						i++;
-						i++;
-					}
-					count++;
-				}
-				$scope.beers = temp;
+					
+		$scope.nextPage();
+				
+				
 		
 		var tabs = [
             { title: 'All'}
@@ -71,18 +63,18 @@ angular.module('beer-buddy-app')
 		}
 		tabs.push({ title: 'Drinking Buddies', action: 'show-all-people' });
 
-			 if( types.indexOf(tab.title) > -1 ) {
-				 $scope.nextPageOfType(tab.title);
-				 $scope.loadMore = function() {
-					 $scope.nextPageOfType(tab.title);
-				}; 
-			 } else {
-				 $scope.nextPage();
-				 $scope.loadMore = function() {
-					$scope.nextPage();
-				};
-			 }
-		}
+//			 if( types.indexOf(tab.title) > -1 ) {
+//				 $scope.nextPageOfType(tab.title);
+//				 $scope.loadMore = function() {
+//					 $scope.nextPageOfType(tab.title);
+//				}; 
+//			 } else {
+//				 $scope.nextPage();
+//				 $scope.loadMore = function() {
+//					$scope.nextPage();
+//				};
+//			 }
+			 
 		function deselectType(tab) {
 			$scope.greeting = 'Hello ' + tab.title + '!';
 		}
@@ -98,7 +90,8 @@ angular.module('beer-buddy-app')
 		$scope.loadMore = function() {
 			$scope.nextPage();
 		};
-			 $scope.people = [];
+		function selectType(tab){
+			// $scope.people = [];
 			 if( types.indexOf(tab.title) > -1 ) {
 				 $scope.nextPageOfType(tab.title);
 				 $scope.loadMore = function() {
@@ -135,108 +128,108 @@ angular.module('beer-buddy-app')
 				 }
 			 }
 		}
+//		
 		function deselectType(tab) {
 			$scope.greeting = 'Hello ' + tab.title + '!';
 		}
-		$scope.nextPageOfType = function(type) {
-			BeerService.getType(type, $scope.page + 1, function(page) {
-				$scope.beers = angular.copy(page.content, $scope.beers);
-				$scope.page = page.number;
-				$scope.totalPages = page.totalPages;
-				$scope.lastPage = page.last;
-			});
-		};
-		
-		$scope.loadMore = function() {
-			$scope.nextPage();
-		};
-		
-		$scope.people = $scope.people || [];
-		$scope.nextPageOfPeople = function() {
-			UserService.getPage($scope.page + 1, function(page) {
-				$scope.people = angular.copy(page.content, $scope.people);
-				$scope.page = page.number;
-				$scope.totalPages = page.totalPages;
-				$scope.lastPage = page.last;
-			});
-		};
-		
-		$scope.nextPageOfUsersBeers = function() {
-			UserService.getUsersBeers($scope.page + 1, function(page) {
-				$scope.beers = angular.copy(page.content, $scope.beers);
-				$scope.page = page.number;
-				$scope.totalPages = page.totalPages;
-				$scope.lastPage = page.last;
-			});
-		};
-					$scope.nextPage();
+//		$scope.nextPageOfType = function(type) {
+//			BeerService.getType(type, $scope.page + 1, function(page) {
+//				$scope.beers = angular.copy(page.content, $scope.beers);
+//				$scope.page = page.number;
+//				$scope.totalPages = page.totalPages;
+//				$scope.lastPage = page.last;
+//			});
+//		};
+//		
+//		$scope.loadMore = function() {
+//			$scope.nextPage();
+//		};
+//		
+//		$scope.people = $scope.people || [];
+//		$scope.nextPageOfPeople = function() {
+//			UserService.getPage($scope.page + 1, function(page) {
+//				$scope.people = angular.copy(page.content, $scope.people);
+//				$scope.page = page.number;
+//				$scope.totalPages = page.totalPages;
+//				$scope.lastPage = page.last;
+//			});
+//		};
+//		
+//		$scope.nextPageOfUsersBeers = function() {
+//			UserService.getUsersBeers($scope.page + 1, function(page) {
+//				$scope.beers = angular.copy(page.content, $scope.beers);
+//				$scope.page = page.number;
+//				$scope.totalPages = page.totalPages;
+//				$scope.lastPage = page.last;
+//			});
+//		};
 
-					var tabs = [ {
-						title : 'All'
-					} ];
-					var types = [];
-					BeerService.getTypes(function(ts) {
-						angular.forEach(ts, function(type) {
-							$scope.tabs.push({
-								title : type
-							});
-							types.push(type);
-						});
-					});
-
-					$scope.tabs = tabs;
-					$scope.selectedIndex = 0;
-					$scope.selectType = selectType;
-					$scope.deselectType = deselectType;
-					$scope.addTab = function(title, view) {
-						view = view || title + " Content View";
-						tabs.push({
-							title : title,
-							content : view,
-							disabled : false
-						});
-					};
-					$scope.removeTab = function(tab) {
-						for (var j = 0; j < tabs.length; j++) {
-							if (tab.title == tabs[j].title) {
-								$scope.tabs.splice(j, 1);
-								break;
-							}
-						}
-					};
-					function selectType(tab) {
-						$scope.page = -1;
-						$scope.beers = [];
-						if (types.indexOf(tab.title) > -1) {
-							$scope.nextPageOfType(tab.title);
-							$scope.loadMore = function() {
-								$scope.nextPageOfType(tab.title);
-							};
-						} else {
-							$scope.nextPage();
-							$scope.loadMore = function() {
-								$scope.nextPage();
-							};
-						}
-					}
-					function deselectType(tab) {
-						$scope.greeting = 'Hello ' + tab.title + '!';
-					}
-					$scope.nextPageOfType = function(type) {
-						BeerService.getType(type, $scope.page + 1, function(
-								page) {
-							$scope.beers = angular.copy(page.content,
-									$scope.beers);
-							$scope.page = page.number;
-							$scope.totalPages = page.totalPages;
-							$scope.lastPage = page.last;
-						});
-					}
-
-					$scope.loadMore = function() {
-						$scope.nextPage();
-					};
-				} ])
+//					var tabs = [ {
+//						title : 'All'
+//					} ];
+//					var types = [];
+//					BeerService.getTypes(function(ts) {
+//						angular.forEach(ts, function(type) {
+//							$scope.tabs.push({
+//								title : type
+//							});
+//							types.push(type);
+//						});
+//					});
+//
+//					$scope.tabs = tabs;
+//					$scope.selectedIndex = 0;
+//					$scope.selectType = selectType;
+//					$scope.deselectType = deselectType;
+//					$scope.addTab = function(title, view) {
+//						view = view || title + " Content View";
+//						tabs.push({
+//							title : title,
+//							content : view,
+//							disabled : false
+//						});
+//					};
+//					$scope.removeTab = function(tab) {
+//						for (var j = 0; j < tabs.length; j++) {
+//							if (tab.title == tabs[j].title) {
+//								$scope.tabs.splice(j, 1);
+//								break;
+//							}
+//						}
+//					};
+//					function selectType(tab) {
+//						$scope.page = -1;
+//						$scope.beers = [];
+//						if (types.indexOf(tab.title) > -1) {
+//							$scope.nextPageOfType(tab.title);
+//							$scope.loadMore = function() {
+//								$scope.nextPageOfType(tab.title);
+//							};
+//						} else {
+//							$scope.nextPage();
+//							$scope.loadMore = function() {
+//								$scope.nextPage();
+//							};
+//						}
+//					}
+//					function deselectType(tab) {
+//						$scope.greeting = 'Hello ' + tab.title + '!';
+//					}
+//					$scope.nextPageOfType = function(type) {
+//						BeerService.getType(type, $scope.page + 1, function(
+//								page) {
+//							$scope.beers = angular.copy(page.content,
+//									$scope.beers);
+//							$scope.page = page.number;
+//							$scope.totalPages = page.totalPages;
+//							$scope.lastPage = page.last;
+//						});
+//					}
+//
+//					$scope.loadMore = function() {
+//						$scope.nextPage();
+//					};
+//				} ])
 
 		$scope.addToRank = function(beer) {
 			UserService.addBeerToRanking(beer, function(response) {
@@ -246,8 +239,8 @@ angular.module('beer-buddy-app')
 				}
 			});
 		};
+				}]);
 
-;
 
 angular.module('beer-buddy-app')
 
@@ -284,8 +277,6 @@ angular.module('beer-buddy-app')
 }])
 
 	
-	
-}]);
 .service('UserService', [ '$resource', function($resource) {
 	
 	var baseUrl = "/users";
@@ -310,4 +301,3 @@ angular.module('beer-buddy-app')
 	
 }])
 ;
-} ]);
