@@ -36,6 +36,11 @@ public class BeerController implements BeerMapper {
 		Sort sort = new Sort(order);
 		Pageable pageable = new PageRequest(page, size, sort);
 		return beerRepository.findAll(pageable);
+		//TODO: convert to a dto pager...
+//		List<BeerDTO> dtos = beer.getContent().stream()
+//					.map(this)
+//					.collect(Collectors.toList());
+//		return new PageImpl<BeerDTO>(dtos, beer.nextPageable(), beer.getTotalElements());
 	}
 	
 	@Description("Returns a list of all of the beers for a particular type")
@@ -54,5 +59,34 @@ public class BeerController implements BeerMapper {
 		Sort sort = new Sort(order);
 		Pageable pageable = new PageRequest(page, size, sort);
 		return beerRepository.findByType(type, pageable);
+//		List<BeerDTO> dtos = beer.getContent().stream()
+//				.map(this)
+//				.collect(Collectors.toList());
+//		return new PageImpl<BeerDTO>(dtos);
+	}
+	
+	@Description("Returns a list of all of the beers from ontario beer api")
+	@RequestMapping(value={"/search/{nameString}" }, method=GET)
+	public Page<Beer> getBeersBySearch(
+			@PathVariable String nameString,
+			@RequestParam(defaultValue="0", required=false) int page,
+			@RequestParam(defaultValue="10", required=false)int size){
+		Order order = new Order(Direction.ASC, "name");
+		Sort sort = new Sort(order);
+		Pageable pageable = new PageRequest(page, size, sort);
+		return beerRepository.findByNameContaining( nameString, pageable);
+	}
+	
+	@Description("Returns a list of all of the beers from ontario beer api")
+	@RequestMapping(value={"/search/{filter}/{nameString}" }, method=GET)
+	public Page<Beer> getBeersBySearch(
+			@PathVariable String nameString,
+			@PathVariable String type,
+			@RequestParam(defaultValue="0", required=false) int page,
+			@RequestParam(defaultValue="10", required=false)int size){
+		Order order = new Order(Direction.ASC, "name");
+		Sort sort = new Sort(order);
+		Pageable pageable = new PageRequest(page, size, sort);
+		return beerRepository.findByNameContainingAndType( nameString, type, pageable);
 	}
 }
