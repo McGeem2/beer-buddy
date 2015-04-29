@@ -18,7 +18,6 @@
 	</parent>
 	
 	<dependencies>
-					
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -28,7 +27,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-				
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -85,6 +83,5 @@
 		</dependency>
 			
 	</dependencies>
-
 
 </project>
