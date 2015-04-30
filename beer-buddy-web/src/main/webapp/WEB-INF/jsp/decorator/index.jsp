@@ -16,9 +16,7 @@
 
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/angular-material.css'/>">
-<link rel="stylesheet" type="text/css" href="/static/bower_components/slick/slick.css">
-<link rel="stylesheet" type="text/css" href="/static/bower_components/angular-slick/app/styles/main.css">
-<link rel="stylesheet" type="text/css" href="/static/bower_components/slick/slick-theme.css">
+<link rel="stylesheet" href="<c:url value='/static/bower_components/material-icons/css/font-awesome.css'/>">
  <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/themes/amber-theme.css'/>">
  <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/themes/blue-theme.css'/>">
  <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/themes/cyan-theme.css'/>">
@@ -29,15 +27,14 @@
 
 <script type="text/javascript" src="/static/bower_components/jquery/jquery-1.11.2.min.js"></script>
 <script src="<c:url value='/static/bower_components/angular/angular.js'/>"></script>
-    <script src="<c:url value='/static/bower_components/angular-aria/angular-aria.js'/>"></script>
-    <script src="<c:url value='/static/bower_components/angular-animate/angular-animate.js'/>"></script>
-    <script src="<c:url value='/static/bower_components/angular-resource/angular-resource.js'/>"></script>
-    <script src="<c:url value='/static/bower_components/angular-messages/angular-messages.min.js'/>"></script>
-    <script src="<c:url value='/static/bower_components/angular-ui-router/release/angular-ui-router.min.js'/>"></script>
-    <script src="<c:url value='/static/bower_components/hammerjs/hammer.js'/>"></script>
-    <script src="<c:url value='/static/bower_components/angular-material/angular-material.js'/>"></script>
-    <script src="/static/bower_components/slick/slick.js" type="text/javascript"></script>
-    <script src="/static/bower_components/angular-slick/dist/slick.js" type="text/javascript"></script>
+<script type='text/javascript' src='/static/bower_components/ngInfiniteScroll/ng-infinite-scroll.min.js'></script>
+<script src="<c:url value='/static/bower_components/angular-aria/angular-aria.js'/>"></script>
+<script src="<c:url value='/static/bower_components/angular-animate/angular-animate.js'/>"></script>
+<script src="<c:url value='/static/bower_components/angular-resource/angular-resource.js'/>"></script>
+<script src="<c:url value='/static/bower_components/angular-messages/angular-messages.min.js'/>"></script>
+<script src="<c:url value='/static/bower_components/angular-ui-router/release/angular-ui-router.min.js'/>"></script>
+<script src="<c:url value='/static/bower_components/hammerjs/hammer.js'/>"></script>
+<script src="<c:url value='/static/bower_components/angular-material/angular-material.js'/>"></script>
 
 <sitemesh:write property='head'/>
 
