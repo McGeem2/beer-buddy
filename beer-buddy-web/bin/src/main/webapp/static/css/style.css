@@ -1,0 +1,56 @@
+.beer {
+	width : 80%
+}
+div.beer{background:#fff;color:#3498db;font-size:18px; margin:10px;padding:2%;position:relative;}
+.ninja {
+	display: none;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.face {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 48px;
+  margin: 16px; 
+}
+
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}
+.text-md-primary {
+	color: rgb(3, 169, 244);
+}
+.text-md-accent {
+	color: rgba(158, 158, 158, 0.298039);
+}
+.text-md-warn {
+	color: rgb(244, 67, 54);
+}
+.text-md-green-primary {
+	color: #66bb6a;
+}
+#filterBar
+{
+	
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #03a9f4;
+	padding-bottom: 10px;
+	-webkit-box-shadow: 0px 13px 19px -6px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 13px 19px -6px rgba(0,0,0,0.75);
+	box-shadow: 0px 13px 19px -6px rgba(0,0,0,0.75);
+}
+body{
+	position:absolute;
+	
+	top: 0;
+	left: 0;
+}
