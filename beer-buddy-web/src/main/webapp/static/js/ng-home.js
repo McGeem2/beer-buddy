@@ -14,10 +14,17 @@ angular.module('beer-buddy-app')
 					$scope.page = -1;
 					$scope.totalPages = 1;
 					$scope.lastPage = false;
+					$scope.types = [];
 
 					$scope.hasMore = function() {
 						return !$scope.lastPage;
 					};
+
+					$scope.getTypes = function() {
+						BeerService.getTypes(function(types){
+							$scope.types = types;
+						})
+					}
 
 					$scope.beers = $scope.beers || [];
 					$scope.nextPage = function() {

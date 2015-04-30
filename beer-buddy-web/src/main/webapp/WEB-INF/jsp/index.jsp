@@ -8,7 +8,6 @@
     </script>
 </head>
 <body>
-
 	<md-toolbar layout="column" class="md-default-theme">
 		<!-- ng-click="openMenu()" -->
       <div class="md-toolbar-tools" flex="" layout="column" tabindex="0">

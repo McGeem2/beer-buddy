@@ -5,11 +5,11 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
-
-
-
+import static org.mockito.Mockito.when;
 
 import java.util.HashSet;
 
@@ -17,11 +17,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.any;
-
-
 
 import com.beerbuddy.core.model.Beer;
 import com.beerbuddy.core.model.DefaultUser;
@@ -113,9 +108,21 @@ public class DefaultUserServiceTest {
 		when(profileRepository.findOne(anyLong())).thenReturn(p);
 		when(beerRepository.findOne(anyLong())).thenReturn(b);
 		when(p.getBeerRankings()).thenReturn(new HashSet<UserBeerRank>());
+		when(rankRepository.findRankByBeerIdAndUser(any(), anyLong())).thenReturn(null);
 		service.addBeerToUserRankings(p, (long)1112223334);
 		verify(rankRepository).save(any(UserBeerRank.class));
 	
+	}
+	
+	@Test
+	public void addBerToRankingBeerAlreadyAdded() throws Exception {
+		
+		Beer b = new Beer();
+		when(profileRepository.findOne(anyLong())).thenReturn(p);
+		when(beerRepository.findOne(anyLong())).thenReturn(b);
+		when(rankRepository.findRankByBeerIdAndUser(any(), anyLong())).thenReturn(new UserBeerRank());
+		service.addBeerToUserRankings(p, 1112223l);
+		verify(rankRepository, never()).save(any(UserBeerRank.class));
 	}
 	
 	

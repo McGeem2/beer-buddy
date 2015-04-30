@@ -2,90 +2,35 @@ package com.beerbuddy.web.apprunner;
 
 
 
-import java.awt.print.Pageable;
-import java.util.ArrayList;
-import java.util.HashMap;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.core.env.Environment;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.mvc.condition.NameValueExpression;
-import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-
-import antlr.collections.List;
-
-import com.beerbuddy.core.config.CoreConfig;
-import com.beerbuddy.core.model.Beer;
-import com.beerbuddy.core.model.DefaultUser;
-import com.beerbuddy.core.model.User;
-import com.beerbuddy.core.repository.BeerRepository;
-import com.beerbuddy.core.repository.BeerSyncRepository;
-import com.beerbuddy.core.repository.UserBeerRankRepository;
-import com.beerbuddy.core.repository.UserProfileRepository;
-import com.beerbuddy.core.repository.UserRepository;
-import com.beerbuddy.core.security.BeerBuddyAuthenticationManager;
-import com.beerbuddy.core.service.BeerStoreSyncService;
-import com.beerbuddy.core.service.UserService;
-import com.beerbuddy.core.service.impl.BeerStoreSyncServiceMonitor;
-import com.beerbuddy.core.service.impl.DefaultBeerStoreSyncService;
-import com.beerbuddy.core.service.impl.DefaultUserService;
-import com.beerbuddy.web.config.AppConfig;
-import com.beerbuddy.web.controller.rest.BeerController;
-import com.beerbuddy.web.controller.rest.LoginController;
-import com.beerbuddy.web.controller.rest.api.ApiSpecController;
-import com.beerbuddy.web.controller.rest.api.MappingInfo;
-import com.beerbuddy.web.controller.ui.HomePageController;
-import com.beerbuddy.web.controller.ui.model.BeerDTO;
-import com.beerbuddy.web.controller.ui.model.BeerMapper;
-import com.beerbuddy.web.controller.ui.model.NewUserRequest;
-import com.beerbuddy.web.listener.BeerStoreSyncListener;
-import com.google.common.net.MediaType;
-
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.hamcrest.core.IsNot.not;
-
-
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Matchers.any;
-
-import org.mockito.InjectMocks;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.springframework.core.env.Environment;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.mvc.condition.NameValueExpression;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import static org.junit.Assert.assertThat;
+import com.beerbuddy.core.model.Beer;
+import com.beerbuddy.core.service.BeerStoreSyncService;
+import com.beerbuddy.web.controller.rest.api.MappingInfo;
+import com.beerbuddy.web.controller.ui.model.BeerDTO;
+import com.beerbuddy.web.controller.ui.model.NewUserRequest;
+import com.beerbuddy.web.listener.BeerStoreSyncListener;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 public class ConfigTest

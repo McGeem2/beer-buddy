@@ -1,5 +1,7 @@
 package com.beerbuddy.core.service.impl;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +48,7 @@ public class DefaultBeerStoreSyncService implements BeerStoreSyncService,
 			while (it.hasNext()) {
 				Beer b = (Beer) it.next();
 				String imageUrl = b.getImageUrl();
-				ResponseEntity<List> r = restTemplate.getForEntity(imageUrl,
-						List.class);
-				if (r.getStatusCode() != HttpStatus.OK) {
+				if (!isImageURLGood(imageUrl)) {
 					log.trace("Removed bad image");
 					log.trace("Beer: " + b.getName());
 					it.remove();
@@ -79,5 +79,25 @@ public class DefaultBeerStoreSyncService implements BeerStoreSyncService,
 			log.trace("beers have been synced");
 		}
 		return true;
+	}
+	
+	protected boolean isImageURLGood(String url)
+	{
+		 HttpURLConnection httpUrlConn;
+	        try {
+	            httpUrlConn = (HttpURLConnection) new URL(url)
+	                    .openConnection();
+	
+	            httpUrlConn.setRequestMethod("HEAD");
+	 
+	            // Set timeouts in milliseconds
+	            httpUrlConn.setConnectTimeout(30000);
+	            httpUrlConn.setReadTimeout(30000);
+	 
+	            return (httpUrlConn.getResponseCode() == HttpURLConnection.HTTP_OK);
+	        } catch (Exception e) {
+	            System.out.println("Error: " + e.getMessage());
+	            return false;
+	        }
 	}
 }
