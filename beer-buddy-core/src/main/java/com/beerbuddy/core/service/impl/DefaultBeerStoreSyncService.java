@@ -42,7 +42,7 @@ public class DefaultBeerStoreSyncService implements BeerStoreSyncService,
 					.collect(Collectors.toList());
 			log.trace("beers have been mapped to model");
 			Iterator it = beers.iterator();
-
+			
 			while (it.hasNext()) {
 				Beer b = (Beer) it.next();
 				String imageUrl = b.getImageUrl();

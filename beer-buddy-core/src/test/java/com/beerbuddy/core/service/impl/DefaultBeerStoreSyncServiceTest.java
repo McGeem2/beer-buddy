@@ -144,6 +144,7 @@ public class DefaultBeerStoreSyncServiceTest {
 		verify(beerRepository).save(argThat(new BeerNameMatcher(() -> "Beer One")));
 	}
 	
+	
 	@FunctionalInterface
 	public interface BeerNameMatcherFunction {
 		public String getName();
