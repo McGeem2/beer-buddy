@@ -16,6 +16,7 @@
 
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/angular-material.css'/>">
+<!-- <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css"> -->
 <link rel="stylesheet" href="<c:url value='/static/bower_components/material-icons/css/font-awesome.css'/>">
  <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/themes/amber-theme.css'/>">
  <link rel="stylesheet" href="<c:url value='/static/bower_components/angular-material/themes/blue-theme.css'/>">
@@ -35,6 +36,7 @@
 <script src="<c:url value='/static/bower_components/angular-ui-router/release/angular-ui-router.min.js'/>"></script>
 <script src="<c:url value='/static/bower_components/hammerjs/hammer.js'/>"></script>
 <script src="<c:url value='/static/bower_components/angular-material/angular-material.js'/>"></script>
+<!-- <script src="https://rawgit.com/angular/bower-material/master/angular-material.js"></script> -->
 
 <sitemesh:write property='head'/>
 
