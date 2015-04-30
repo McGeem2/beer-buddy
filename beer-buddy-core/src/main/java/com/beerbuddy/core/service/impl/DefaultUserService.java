@@ -97,7 +97,10 @@ public class DefaultUserService implements UserService, CrytpoFunctions {
 	public void addBeerToUserRankings(User user, Long beerId) {
 		UserProfile profile = userProfileRepository.findOne(user.getProfileId());
 		Beer beer = beerRepository.findOne(beerId);
-		
+		if(rankRepository.findRankByBeerIdAndUser(profile.getUsername(), beerId) != null)
+		{
+			return;
+		}
 		UserBeerRank rank = new UserBeerRank();
 		rank.setUser(profile);
 		rank.setBeer(beer);

@@ -1,5 +1,5 @@
 
-var app = angular.module('beer-buddy-app', ['ngMaterial', 'ui.router', 'ngResource', 'ngMessages', 'slick']);
+var app = angular.module('beer-buddy-app', ['ngMaterial', 'ui.router', 'ngResource', 'ngMessages', 'infinite-scroll']);
 
 app.config(['$stateProvider', '$urlRouterProvider', "$httpProvider",
             function($stateProvider, $urlRouterProvider, $httpProvider) {

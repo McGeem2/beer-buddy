@@ -4,13 +4,13 @@
  */
 @font-face {
   font-family: 'Material Design Iconic Font';
-  src: url('../fonts/Material-Design-Iconic-Font.eot?v=1.0.1');
-  src: url('../fonts/Material-Design-Iconic-Font.eot?#iefix&v=1.0.1') format('embedded-opentype'), url('../fonts/Material-Design-Iconic-Font.woff?v=1.0.1') format('woff'), url('../fonts/Material-Design-Iconic-Font.ttf?v=1.0.1') format('truetype'), url('../fonts/Material-Design-Iconic-Font.svg?v=1.0.1#Material-Design-Iconic-Font') format('svg');
+  src: url('/static/bower_components/material-icons/fonts/Material-Design-Iconic-Font.eot?v=1.0.1');
+  src: url('/static/bower_components/material-icons/fonts/Material-Design-Iconic-Font.eot?#iefix&v=1.0.1') format('embedded-opentype'), url('/static/bower_components/material-icons/fonts/Material-Design-Iconic-Font.woff?v=1.0.1') format('woff'), url('/static/bower_components/material-icons/fonts/Material-Design-Iconic-Font.ttf?v=1.0.1') format('truetype'), url('/static/bower_components/material-icons/fonts/Material-Design-Iconic-Font.svg?v=1.0.1#Material-Design-Iconic-Font') format('svg');
   font-weight: normal;
   font-style: normal;
 }
-[class^="md-"],
-[class*=" md-"] {
+[class^="md-icon"],
+[class*=" md-icon"] {
   display: inline-block;
   font: normal normal normal 14px/1 'Material Design Iconic Font';
   font-size: inherit;

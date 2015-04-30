@@ -14,4 +14,9 @@ public interface UserBeerRankRepository extends JpaRepository<UserBeerRank, Long
 			+ " where r.user.user.username = :username "
 			+ " order by r.rank asc")
 	public Page<UserBeerRank> findByUser(@Param("username") String username, Pageable page);
+	
+	@Query("select r from UserBeerRank r" 
+			+ " where r.beer.id = :beerId"
+			+ " and r.user.user.username = :username")
+	public UserBeerRank findRankByBeerIdAndUser(@Param("username") String username,@Param("beerId") Long beerId);
 }
