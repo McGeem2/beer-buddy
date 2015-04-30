@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>beer-buddy-master-pom</artifactId>
@@ -9,7 +8,7 @@
 	<groupId>com.beerbuddy</groupId>
 	<name>Beer Buddy Master POM</name>
 	<description>This is a master pom to manage all the subprojects and dependencies</description>
-	 
+
 	<packaging>pom</packaging>
 
 	<modules>
@@ -27,10 +26,11 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
+			</plugin>
 		</plugins>
-	
+
 		<pluginManagement>
-	
+
 			<plugins>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
@@ -96,13 +96,13 @@
 
 	<dependencyManagement>
 		<dependencies>
-		
+
 			<dependency>
 				<groupId>com.beerbuddy</groupId>
 				<artifactId>beer-buddy-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-		
+
 			<dependency>
 				<groupId>org.sitemesh</groupId>
 				<artifactId>sitemesh</artifactId>
@@ -128,17 +128,17 @@
 				<artifactId>validation-api</artifactId>
 				<version>${javax.validation.version}</version>
 			</dependency>
-					
+
 			<dependency>
 				<groupId>org.dbunit</groupId>
 				<artifactId>dbunit</artifactId>
 				<version>${dbunit.version}</version>
 				<scope>test</scope>
 			</dependency>
-				
+
 		</dependencies>
 	</dependencyManagement>
-	
+
 
 	<reporting>
 		<plugins>
@@ -151,27 +151,27 @@
 				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>findbugs-maven-plugin</artifactId>
-		      </plugin>
-		      <plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-pmd-plugin</artifactId>
-		      </plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-checkstyle-plugin</artifactId>
-				</plugin>
-				<plugin>
-		          <groupId>org.codehaus.mojo</groupId>
-		          <artifactId>taglist-maven-plugin</artifactId>
-		        </plugin>
-				<plugin>
-		          <groupId>org.codehaus.mojo</groupId>
-		          <artifactId>dashboard-maven-plugin</artifactId>
-		        </plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>dashboard-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</reporting>
 
-	
+
 </project>
